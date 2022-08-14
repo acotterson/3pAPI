@@ -20,8 +20,6 @@ $(".hour").each(function (index) {
 
 
 $( "button" ).click(function() {
-    // console.log($(this).siblings('div').html());
-    // console.log($(this).siblings('textarea').val());
     localStorage.setItem($(this).siblings('div').html(),$(this).siblings('textarea').val());
 });
 
