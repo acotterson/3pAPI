@@ -1,4 +1,4 @@
-var currentDay = moment().format("MMM Do YYYY"); 
+var currentDay = moment().format("dddd - MMMM Do, YYYY"); 
 var currentHour =parseInt(moment().subtract(10, 'hours').format("H"));
 var spaces = /\s+/g;
 
@@ -9,11 +9,11 @@ $(".hour").each(function (index) {
   var currentDivHourInt = parseInt(moment(currentDivHour, "hA").format("H"));
 
   if (currentDivHourInt === currentHour) {
-    $(this).addClass("present");
+    $(this).siblings('textarea').addClass("present");
   } else if (currentDivHourInt < currentHour) {
-    $(this).addClass("past");
+    $(this).siblings('textarea').addClass("past");
   } else {
-    $(this).addClass("future");
+    $(this).siblings('textarea').addClass("future");
   }  
   
   $(this).siblings('textarea').val(localStorage.getItem(currentDivHour));
