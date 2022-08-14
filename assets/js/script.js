@@ -1,26 +1,24 @@
 var currentDay = moment().format("MMM Do YYYY"); 
 var currentHour =parseInt(moment().subtract(10, 'hours').format("H"));
-// console.log(currentHour);
+var spaces = /\s+/g;
 
 $('#currentDay').html(currentDay);
 
 $(".hour").each(function (index) {
-  var currentDivHour = this.innerText.replace(/\s+/g, "");
-  currentDivHour = parseInt(moment(currentDivHour, "hA").format("H"));
-//   console.log(currentDivHour);
-  if (currentDivHour === currentHour) {
+  var currentDivHour = $(this).html().replace(spaces, "");
+  var currentDivHourInt = parseInt(moment(currentDivHour, "hA").format("H"));
+
+  if (currentDivHourInt === currentHour) {
     $(this).addClass("present");
-  } else if (currentDivHour < currentHour) {
+  } else if (currentDivHourInt < currentHour) {
     $(this).addClass("past");
   } else {
     $(this).addClass("future");
-  }
+  }  
+  
+  $(this).siblings('textarea').val(localStorage.getItem(currentDivHour));
 });
-
-
 
 $( "button" ).click(function() {
-    localStorage.setItem($(this).siblings('div').html(),$(this).siblings('textarea').val());
+    localStorage.setItem($(this).siblings('div').html().replace(spaces, ""),$(this).siblings('textarea').val());
 });
-
-// $( "button.continue" ).html( "Next Step..." )
