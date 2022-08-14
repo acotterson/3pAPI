@@ -1,5 +1,5 @@
 var currentDay = moment().format("dddd - MMMM Do, YYYY");
-var currentHour = parseInt(moment().subtract(10, "hours").format("H"));
+var currentHour = parseInt(moment().format("H"));
 // regex to select all white space
 var spaces = /\s+/g;
 
